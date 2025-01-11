@@ -1,0 +1,78 @@
+<!-- views/appointments/edit.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editing <%= appointment.title %></title>
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+  <h1>Edit <%= appointment.carmake %> for <%= appointment.servicetype %></h1>
+  <form
+    action="/users/<%= user._id %>/appointments/<%= appointment._id %>?_method=PUT"
+    method="POST"
+  >
+    <label for="carmake">CarMake:</label>
+    <input
+      type="text"
+      name="carmake"
+      id="carmake"
+      value="<%= appointment.carmake %>"
+    >
+    <label for="carmodel">CarModel:</label>
+    <input type="text" name="carmodel" id="carmodel" 
+    value="<%= appointment.carmodel %>"
+    >
+    <label for="notes">Notes:</label>
+    <textarea name="notes" id="notes"><%= appointment.notes %></textarea>
+
+    <label for="date">Date:</label>
+    <input type="date" name="date" id="date" 
+    value="<%= appointment.date %>"
+    >
+
+
+    <label for="time">Time:</label>
+    <input type="time" name="time" id="time"
+    value="<%= appointment.time %>"
+    >
+    
+    <label for="servicetype">ServiceType:</label>
+    <select id="servicetype" name="servicetype">
+      <option
+        value="Car Wash"
+        <%= appointment.status === "Car Wash" ? "selected" : "" %>
+      >
+        Car Wash
+      </option>
+      <option
+        value="Car Polish"
+        <%= appointment.status === "Car Polish" ? "selected" : "" %>
+      >
+        Car Polish
+      </option>
+      <option
+        value="Car Detailing"
+        <%= appointment.status === "Car Detailing" ? "selected" : "" %>
+      >
+        Car Detailing
+      </option>
+      <option
+        value="Paint Protection"
+        <%= appointment.status === "Paint Protection" ? "selected" : "" %>
+      >
+        Paint Protection
+      </option>
+      <option
+        value="Window Tint"
+        <%= appointment.status === "Window Tint" ? "selected" : "" %>
+      >
+        Window Tint
+      </option>
+    </select>
+    <button type="submit">Update appointment</button>
+  </form>
+</body>
+</html>

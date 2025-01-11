@@ -12,6 +12,9 @@ const authController = require('./controllers/auth');
 const isSignedIn = require('./middleware/isSignedIn');
 
 const app = express();
+
+const appointmentsController = require('./controllers/appointments.js');
+
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : '3000';
 
@@ -28,32 +31,45 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI,
-    }),
+    // store: MongoStore.create({
+    //   mongoUrl: process.env.MONGODB_URI,
+    // }),
   })
 );
 
 app.use(addUserToViews);
 
-// Public Routes
-app.get('/', async (req, res) => {
-  res.render('index.ejs');
-});
-
 app.use('/auth', authController);
 
-// Protected Routes
-app.use(isSignedIn);
 
-app.get('/protected', async (req, res) => {
-  if (req.session.user) {
-    res.send(`Welcome to the party ${req.session.user.username}.`);
+
+// Public Routes
+app.get('/', async (req, res) => {
+  if (req.session.user){
+    res.redirect(`/users/${req.session.user._id}/appointments`);
   } else {
-    res.sendStatus(404);
-    // res.send('Sorry, no guests allowed.');
+    res.render('index.ejs');
   }
 });
+
+
+app.use(isSignedIn);
+app.use('/users/:userId/appointments', appointmentsController); 
+
+
+
+// Protected Routes
+
+
+
+// app.get('/protected', async (req, res) => {
+//   if (req.session.user) {
+//     res.send(`Welcome to the party ${req.session.user.username}.`);
+//   } else {
+//     res.sendStatus(404);
+//     // res.send('Sorry, no guests allowed.');
+//   }
+// });
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console

@@ -1,0 +1,39 @@
+<!-- views/appointments/new.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add a New App</title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Book an Appointment</h1>
+    <form action="/users/<%= user._id %>/appointments" method="POST">
+        <label for="carmake">CarMake:</label>
+        <input type="text" name="carmake" id="carmake" />
+        <label for="carmodel">CarModel:</label>
+        <input type="text" name="carmodel" id="carmodel" />
+        <label for="servicetype">ServiceType:</label>
+        <select id="servicetype" name="servicetype">
+            <option value="Car Wash">Car Wash</option>
+            <option value="Car Polish">Car Polish</option>
+            <option value="Car Detailing">Car Detailing</option>
+            <option value="Paint Protection">Paint Protection</option>
+            <option value="Window Tint">Window Tint</option>        
+        </select>
+        <label for="notes">Notes:</label>
+        <textarea name="notes" id="notes"></textarea>
+
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date" />
+
+        <label for="time">Time:</label>
+        <input type="time" name="time" id="time" />
+
+        <button type="submit">Add Appointment</button>
+
+      </form>
+  </body>
+</html>
