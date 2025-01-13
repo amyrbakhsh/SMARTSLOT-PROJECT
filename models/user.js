@@ -23,8 +23,8 @@ const appointmentSchema = new mongoose.Schema({
   time: {
     type: String,
     required: true,
-    match: /^(?:[01]\d|2[0-3]):[0-5]\d$/ 
-  }
+    match: /^(?:[01]\d|2[0-3]):[0-5]\d$/
+  },
 });
 
 const userSchema = new mongoose.Schema({

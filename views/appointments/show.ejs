@@ -1,27 +1,38 @@
-<!-- views/appointments/show.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= appointment.carmake %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title><%= appointment.servicetype %></title>
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1><%= appointment.carmake%> for <%= appointment.servicetype %></h1>
-    <% if (appointment.notes) { %>
-    <p>Notes: <%= appointment.notes %></p>
-    <% } %>
-    <p>The time of this appointment is: <%= appointment.time %></p>
-    <a href="/users/<%= user._id %>/appointments/<%= appointment._id %>/edit">
-        Edit this appointment
-      </a>
-    <form
-      action="/users/<%= user._id %>/appointments/<%= appointment._id %>?_method=DELETE"
-      method="POST"
-    >
-      <button type="submit">Delete this appointment</button>
-    </form>
+    <div class="show-body">
+      <div class="show-header">
+        <h1><%= appointment.carmake%> for <%= appointment.servicetype %></h1>
+        <p>The appointment is schdeuled at: <%= appointment.time %> on <%= appointment.date %></p>
+          <div class="show-sidebar">
+            <% if (appointment.notes) { %>
+              <div class="show-notes">
+                <p>Notes: <%= appointment.notes %></p>
+              </div>
+              <% } %>
+        </div>
+            <div class="show-actions">
+              <form
+              action="/users/<%= user._id %>/appointments/<%= appointment._id %>/edit"
+              method="PUT"
+              >
+              <button type="submit">Edit this appointment</button>
+              </form>
+              <form
+              action="/users/<%= user._id %>/appointments/<%= appointment._id %>?_method=DELETE"
+              method="POST"
+              >
+              <button type="submit">Delete this appointment</button>
+              </form>
+            </div>
+          </div>
   </body>
 </html>

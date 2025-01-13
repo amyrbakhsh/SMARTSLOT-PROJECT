@@ -8,7 +8,8 @@ const router = express.Router();
 // Sign up
 router.get('/sign-up', async (req, res) => {
   res.render('auth/sign-up.ejs');
-});
+  }
+);
 
 router.post('/sign-up', async (req, res) => {
   // grab the values from the req body

@@ -1,16 +1,16 @@
-<!-- views/appointments/new.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title>Add a New App</title>
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Book an Appointment</h1>
-    <form action="/users/<%= user._id %>/appointments" method="POST">
+    <div class="new-body">
+      <form action="/users/<%= user._id %>/appointments" method="POST">
         <label for="carmake">CarMake:</label>
         <input type="text" name="carmake" id="carmake" />
         <label for="carmodel">CarModel:</label>
@@ -35,5 +35,6 @@
         <button type="submit">Add Appointment</button>
 
       </form>
+    </div>
   </body>
 </html>

@@ -10,21 +10,16 @@ require('./config/database');
 // Controllers
 const authController = require('./controllers/auth');
 const isSignedIn = require('./middleware/isSignedIn');
-
 const app = express();
-
 const appointmentsController = require('./controllers/appointments.js');
-
-// Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : '3000';
+const path = require('path');
 
 // MIDDLEWARE
 
-// Middleware to parse URL-encoded data from forms
 app.use(express.urlencoded({ extended: false }));
-// Middleware for using HTTP verbs such as PUT or DELETE
 app.use(methodOverride('_method'));
-// Morgan for logging HTTP requests
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'));
 app.use(
   session({
@@ -42,8 +37,6 @@ app.use(addUserToViews);
 app.use('/auth', authController);
 
 
-
-// Public Routes
 app.get('/', async (req, res) => {
   if (req.session.user){
     res.redirect(`/users/${req.session.user._id}/appointments`);
@@ -57,21 +50,6 @@ app.use(isSignedIn);
 app.use('/users/:userId/appointments', appointmentsController); 
 
 
-
-// Protected Routes
-
-
-
-// app.get('/protected', async (req, res) => {
-//   if (req.session.user) {
-//     res.send(`Welcome to the party ${req.session.user.username}.`);
-//   } else {
-//     res.sendStatus(404);
-//     // res.send('Sorry, no guests allowed.');
-//   }
-// });
-
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
   console.log(`The express app is ready on port ${port}!`);
 });

@@ -1,25 +1,23 @@
-<!-- views/appointments/edit.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
   <title>Editing <%= appointment.title %></title>
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
-  <h1>Edit <%= appointment.carmake %> for <%= appointment.servicetype %></h1>
-  <form
+  <div class="edit-body">
+    <h1>Edit <%= appointment.carmake %> for <%= appointment.servicetype %></h1>
+    <form
     action="/users/<%= user._id %>/appointments/<%= appointment._id %>?_method=PUT"
     method="POST"
-  >
+    >
     <label for="carmake">CarMake:</label>
     <input
-      type="text"
-      name="carmake"
-      id="carmake"
-      value="<%= appointment.carmake %>"
+    type="text" name="carmake" id="carmake"
+    value="<%= appointment.carmake %>"
     >
     <label for="carmodel">CarModel:</label>
     <input type="text" name="carmodel" id="carmodel" 
@@ -62,17 +60,18 @@
       <option
         value="Paint Protection"
         <%= appointment.status === "Paint Protection" ? "selected" : "" %>
-      >
-        Paint Protection
+        >
+          Paint Protection
       </option>
       <option
         value="Window Tint"
-        <%= appointment.status === "Window Tint" ? "selected" : "" %>
-      >
-        Window Tint
-      </option>
-    </select>
-    <button type="submit">Update appointment</button>
-  </form>
-</body>
+          <%= appointment.status === "Window Tint" ? "selected" : "" %>
+        >
+          Window Tint
+        </option>
+      </select>
+      <button type="submit">Update appointment</button>
+    </form>
+    </div>
+  </body>
 </html>
