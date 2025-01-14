@@ -10,7 +10,7 @@
     <%- include('../partials/_navbar.ejs') %>
     <div class="show-body">
       <div class="show-header">
-        <h1><%= appointment.carmake%> for <%= appointment.servicetype %></h1>
+        <h1><%= appointment.servicetype %> for <%= appointment.carmake%></h1>
         <p>The appointment is schdeuled at: <%= appointment.time %> on <%= appointment.date %></p>
           <div class="show-sidebar">
             <% if (appointment.notes) { %>

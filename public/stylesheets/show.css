@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 body {
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background-color: #a3d2ca; 
+  background-color: #f1faee;
+  color: #2a2a2a;
 }
 
 .show-body {
@@ -14,6 +16,7 @@ body {
   width: 100%;
   justify-content: center;
   align-items: center;
+  background-color: #f1faee;
 }
 
 .show-header {
@@ -25,7 +28,7 @@ body {
 }
 
 .show-header > h1 {
-  color: #05668d;
+  color: #005f73;
   font-size: 3.4em;
   margin-left: 10px;
 }
@@ -41,21 +44,23 @@ body {
 
 button {
   padding: 8px 10px;
-  background-color: #05668d;
+  background-color: #005f73;
   color: white;
   border-radius: 30px;
   border: none;
   font-size: 1.1em;
   width: 10em;
   margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
 button:hover {
-  background-color: #028090;
+  background-color: #0a9396;
 }
 
 .show-actions > a {
-  background-color: #028090;
+  background-color: #0a9396;
   color: white;
   text-decoration: none;
   font-size: 1.1em;
@@ -64,16 +69,14 @@ button:hover {
   width: 10em;
   text-align: center;
   margin: 5px;
-  font-family: 'Poppins', sans-serif;
 }
 
 .show-actions > a:hover {
-  background-color: #05668d;
+  background-color: #005f73;
 }
 
-
 p {
-  color: #05668d;
+  color: #005f73;
   font-weight: bold;
   font-size: 1.4em;
   margin: 10px 30px;
@@ -81,7 +84,7 @@ p {
 }
 
 .show-notes {
-  background-color: #f0f3bd;
+  background-color: #ffffff;
   width: 85%;
   border-radius: 20px;
   padding: 40px 40px 20px 40px;
@@ -90,12 +93,12 @@ p {
 
 h2 {
   margin: 0 10px;
-  color: #05668d; 
+  color: #005f73;
 }
 
 .show-notes > p {
   font-weight: normal;
-  color: #05668d;
+  color: #2a2a2a;
   text-align: left;
   font-size: 1.2em;
 }
